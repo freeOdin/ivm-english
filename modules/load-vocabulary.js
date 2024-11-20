@@ -1,13 +1,6 @@
-let vocabularyLists = {
-    "book-2-lesson-1": {youtubeLink: "G-zMQaayTAA"},
-    "book-2-lesson-2": {youtubeLink: "G-zMQaayTAA"},
-    "book-2-lesson-3": {youtubeLink: "G-zMQaayTAA"},
-    "book-2-lesson-4": {youtubeLink: "G-zMQaayTAA"},
-    "book-2-lesson-5": {youtubeLink: "G-zMQaayTAA"},
-    "book-2-lesson-6": {youtubeLink: "G-zMQaayTAA"},
-}
+import { vocabularyLists } from './vocabulary-lists.js';
 
-async function loadVocabulary(lesson) {
+export async function loadVocabulary(lesson) {
     try {
         const response = await fetch(`./lessons/${lesson}.csv`);
         const csvText = await response.text();
@@ -21,6 +14,7 @@ async function loadVocabulary(lesson) {
             return { english, part, chinese };
         });
 
+
         // Add the new vocabulary to the existing vocabularyLists
         vocabularyLists[lesson].wordList = vocabulary;
         
@@ -29,8 +23,3 @@ async function loadVocabulary(lesson) {
     }
 }
 
-for (const lesson in vocabularyLists) {
-    loadVocabulary(lesson);
-}
-
-export { vocabularyLists };
