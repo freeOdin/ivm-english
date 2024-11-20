@@ -9,7 +9,7 @@ let vocabularyLists = {
 
 async function loadVocabulary(lesson) {
     try {
-        const response = await fetch(`./${lesson}.csv`);
+        const response = await fetch(`./lessons/${lesson}.csv`);
         const csvText = await response.text();
         
         // Split the CSV into lines and remove empty lines
